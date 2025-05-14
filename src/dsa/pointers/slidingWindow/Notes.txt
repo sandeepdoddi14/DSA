@@ -1,0 +1,17 @@
+1. approach to implement for dynamic array
+2. print all sub arrays -> if you want to print all sub arrays then o(n2) cannot be avoided
+2. longestsubarray -> if you need to do some computations around this then the time complexity can be optimized using sliding window algo
+    general process
+    optimal solution
+        instead of shrinking whole P1. shrink only to one so that we dont go much beyond then already found sub array length
+        simply replace the while loop with if condition
+        this optimal solution is only applied when it is asked to find the sub array length
+3. time complexity O(N+N) = 0(2N)
+    for optimal solution it is O(N)
+4. space complexity o(1)
+
+
+
+questions:
+1. length of longest sub array
+2. longest substring without repeating charcters

@@ -1,0 +1,6 @@
+Binary Search
+    1. works for sorted array
+    2. can be ascending or descending
+    3. cannot return index because array can contain missing elements
+    4. time complexity - as we are dividing the array to half it is logn to base 2
+
