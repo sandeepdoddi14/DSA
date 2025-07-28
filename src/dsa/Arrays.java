@@ -10,6 +10,47 @@ public class Arrays {
 
     }
 
+
+
+    public boolean checkString(String s) {
+        if (!s.contains("b"))
+            return true;
+        boolean result = false;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'b') {
+                result = true;
+            } else if (s.charAt(i) == 'a') {
+                if (result == true) {
+                    return false;
+                    // break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public int pivotIndex(int[] nums) {
+        int[] frontsum = new int[nums.length];
+        int[] backsum = new int[nums.length];
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum = sum + nums[i];
+            frontsum[i] = sum;
+        }
+        sum = 0;
+        for (int j = nums.length - 1; j >= 0; j--) {
+            sum = sum + nums[j];
+            backsum[j] = sum;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (frontsum[i] == backsum[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static int[] findErrorNums(int[] nums) {
         int[] result = new int[2];
         for (int i = 0; i < nums.length - 1; i++) {

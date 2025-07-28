@@ -2,6 +2,7 @@ package dsa;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 public class Strings {
     /*
@@ -14,29 +15,30 @@ public class Strings {
         String sequence = "ababc";
         String word = "ab";
         //System.out.println(maxRepeating(sequence, word));
-       // System.out.println(longestNiceSubstring("dDzeE"));
+        // System.out.println(longestNiceSubstring("dDzeE"));
         String s = "abcde";
         String goal = "cdeab";
-        System.out.println(rotateString(s,goal));
+        System.out.println(rotateString(s, goal));
     }
 
 
     public static boolean rotateString(String s, String goal) {
-       int rotations = 0;
-       StringBuilder stringBuilder = new StringBuilder(s);
-       while(rotations <s.length()) {
-           char temp = stringBuilder.charAt(0);
-           //for (int i = 0; i < s.length(); i++) {
-               stringBuilder.replace(0, stringBuilder.length(), stringBuilder.substring(1,stringBuilder.length())+temp);
-               if(stringBuilder.toString().equals(goal)) {
-                   return true;
-               }
+        int rotations = 0;
+        StringBuilder stringBuilder = new StringBuilder(s);
+        while (rotations < s.length()) {
+            char temp = stringBuilder.charAt(0);
+            //for (int i = 0; i < s.length(); i++) {
+            stringBuilder.replace(0, stringBuilder.length(), stringBuilder.substring(1, stringBuilder.length()) + temp);
+            if (stringBuilder.toString().equals(goal)) {
+                return true;
+            }
 
-           //}
-           rotations++;
-       }
-       return false;
+            //}
+            rotations++;
+        }
+        return false;
     }
+
     public static int maxRepeating(String sequence, String word) {
         int k = 0;
         StringBuilder stringBuilder = new StringBuilder();
@@ -60,15 +62,30 @@ public class Strings {
             }
         }
 
-        if(set.isEmpty())
+        if (set.isEmpty())
             return "";
         for (int i = 0; i < s.length(); i++) {
-            if(!set.contains(s.charAt(i))){
-                    String pre = longestNiceSubstring(s.substring(0,i));
-                    String post = longestNiceSubstring(s.substring(i+1,s.length()));
-                    return pre.length() >= post.length() ? pre : post;
+            if (!set.contains(s.charAt(i))) {
+                String pre = longestNiceSubstring(s.substring(0, i));
+                String post = longestNiceSubstring(s.substring(i + 1, s.length()));
+                return pre.length() >= post.length() ? pre : post;
             }
         }
         return s;
+    }
+
+    public String reverseWords(String s) {
+        s.trim();
+        Stack<String> stack = new Stack<>();
+        for (String temp : s.split(" ")) {
+            stack.push(temp);
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+            if (!stack.isEmpty())
+                sb.append(" ");
+        }
+        return sb.toString();
     }
 }

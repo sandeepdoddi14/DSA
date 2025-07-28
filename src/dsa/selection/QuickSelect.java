@@ -1,4 +1,4 @@
-package dsa;
+package dsa.selection;
 
 public class QuickSelect {
 
