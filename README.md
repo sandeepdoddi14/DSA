@@ -1,10 +1,15 @@
 # DSA
-1. Binary Search
-2. Quick Select
-3. recursion and backtracking
-4. Queue
-5. Sliding Window
-6. Greedy
-7. LinkedLIST
-8. Sorting
-9. tree
+
+
+1. Arrays                        - revised (80+)
+2. Binary Search                
+3. Quick Select
+4. recursion and backtracking     - N
+5. Queue
+6. Sliding Window                 - easy all completed + Medium 2
+7. Greedy                         - revised (80+)        
+8. LinkedLIST
+9. Sorting                        - N
+10. tree
+11. String Matching               - N 1
+12. Trie                          - N 1

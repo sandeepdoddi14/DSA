@@ -1,0 +1,6 @@
+A Trie (pronounced try, also called a prefix tree) is a special type of tree-like data structure that is mainly used for storing and searching strings, especially when we need fast prefix-based operations.
+
+Operations:
+Insert(word) – Add characters of the word one by one.
+Search(word) – Traverse nodes; check if the last node marks end of a word.\
+StartsWith(prefix) – Check if prefix exists in the trie.

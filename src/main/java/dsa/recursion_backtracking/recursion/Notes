@@ -1,0 +1,10 @@
+1. calling the same function again until a condition is met or no condition is called recursion
+2. stack over flow example:
+    consider if you call a function recursively without any condition to stop then at some point of time program ends due to memory outage
+    it is called as stack over flow(out of memory)
+    function calls keeps waiting in stack
+3. base condition:
+        the condition to stop recursion
+
+
+
