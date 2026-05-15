@@ -9,8 +9,8 @@ import java.util.Stack;
 public class Arrays {
 
     public static void main(String[] args) {
-        int[] nums = {1,2,1,1,3};
-        System.out.println((find3Numbers(nums)));
+        int[] nums = {0,1,2,3,4,5,6,7,8,9};
+        System.out.println((validMountainArray(nums)));
 
     }
 
@@ -193,6 +193,40 @@ public class Arrays {
             }
         }
         return result;
+    }
+
+    public static boolean validMountainArray(int[] arr) {
+        boolean isIncreasing = false;
+        if(arr[0]<arr[1])
+            isIncreasing = true;
+        if(isIncreasing==false)
+            return false;
+        for(int i=1;i<arr.length-1;i++)
+        {
+            while(isIncreasing && i<arr.length-1)
+            {
+                if(arr[i]<arr[i+1])
+                {
+                    i++;
+                }
+                else
+                {
+                    isIncreasing = false;
+                }
+            }
+            while(isIncreasing==false && i<arr.length-1)
+            {
+                if(arr[i]>arr[i+1])
+                {
+                    i++;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return (!isIncreasing);
     }
 
 }

@@ -6,7 +6,7 @@ public class ContainsNearByDuplicate {
     public static void main(String[] args) {
 
     }
-    public boolean containsNearbyDuplicate(int[] nums,   k) {
+    public boolean containsNearbyDuplicate(int[] nums, int  k) {
         HashSet<Integer> window = new HashSet<>();
 
         for (int i = 0; i < nums.length; i++) {

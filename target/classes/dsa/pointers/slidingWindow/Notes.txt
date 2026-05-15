@@ -21,3 +21,6 @@ questions:
 Limitations:
 1. negitive numbers in the array  with variable window size 
     cannot use sliding window , use brute force to get all sub arrays and get the output
+
+
+kandans algortithm

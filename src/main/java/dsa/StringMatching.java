@@ -6,7 +6,9 @@ public class StringMatching {
     public static void main(String[] args) {
         String s="nrnrs";
         String p="*nn";
-        System.out.println(hasMatch(s,p));
+       // System.out.println(hasMatch(s,p));
+
+        
 
     }
 
@@ -32,8 +34,11 @@ public class StringMatching {
                     temp.put(p.charAt(j),temp.get(p.charAt(j))-1);
             }
         }
+       
 
         return true;
 
     }
+
+
 }

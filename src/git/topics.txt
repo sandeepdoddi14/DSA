@@ -1,2 +1,30 @@
 1. difference x git merge and rebase
-2.
+2. restore and reset
+
+
+git - done
+pull  = fetch + merge/rebase
+merge/rebase //branch level
+cherry pick -> merges the commit into local //commit level
+commit push
+
+//BELOW IS A GAME OF COMMITS IN LOCAL/REMOTE
+restore
+    restores  files in staging area
+    git restore . -> EXAMPLE all files
+    git restore <file-name> -> EXAMPLE specific file
+
+reset
+    git reset HEAD~1 -> EXAMPLE
+    git reset --hard HEAD~1 -> EXAMPLE
+    git reset --soft HEAD~1 -> EXAMPLE
+    git reset <commit-hash> -> EXAMPLE
+    does not maintain history of commits, it simply moves the HEAD pointer back to the previous commit, effectively undoing the last commit. This is useful when you want to completely remove a commit from the history.
+    this can be used to unstage changes or to undo commits, but it can lead to loss of data if not used carefully, especially if the commits have already been pushed to a remote repository.
+revert
+    maintains the history of commits, but creates a new commit that undoes the changes made by a previous commit. This is useful when you want to undo a change without losing the history of that change.
+    git revert <commit-hash> -> EXAMPLE
+
+git status -> UNTRACKED, STAGED, COMMITTED CHANGE LOG
+git log -> COMMIT HISTORY
+git checkout / switch
