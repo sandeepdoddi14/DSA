@@ -1,0 +1,255 @@
+Playwright vs selenium
+auto wait
+context object isolation and parallel execution in default
+no driver intrerface like selinium making it faster
+built in api testing,tracing
+wait for the network calls
+intercept network calls
+
+API
+await request.post('https://github.com/login', {
+    form: {
+      'user': 'user',
+      'password': 'password'
+    }
+  });
+
+
+  // Create a context that will issue http requests.
+  const context = await request.newContext({
+    baseURL: 'https://api.github.com',
+  });
+
+  // Create a repository.
+  await context.post('/user/repos', {
+    headers: {
+      'Accept': 'application/vnd.github.v3+json',
+      // Add GitHub personal access token.
+      'Authorization': `token ${process.env.API_TOKEN}`,
+    },
+    data: {
+      name: REPO
+    }
+
+    //USE playwright.config.ts CONFIGS FIR BASEURL AND HEADERS DEFINE
+      const newIssue = await request.post(`/repos/${USER}/${REPO}/issues`, {
+    data: {
+      title: '[Bug] report 1',
+      body: 'Bug description',
+    }
+  });
+  expect(newIssue.ok()).toBeTruthy();
+
+  });
+
+
+expect(response.status()).toBe(200);
+const body = await response.json();
+expect(body.id).toBe(10);
+
+
+
+network calls
+await page.waitForRequest((request) => {
+  if (request.url() === eventSubmissionUrl) {
+    return request;
+  }
+});
+await this.page.waitForResponse((response) => {
+  return response.url().includes(`start`) && response.status() === 200;
+}, {timeout: 15000});
+
+intercepting
+await this.page.route('https://www.hotstar.com/api/internal/bff/v2/start', async (route) => {
+  const headers = route.request().headers();
+  headers['x-hs-client-targeting'] = 'ad_id:dba87664-ae9e-4a98-ac8d-9372f7e24a4c;user_lat:false;hw_id:a954a95e5b41ac86;specific_tags:prod_vod_cta_test';
+  await route.continue({headers});
+});
+switch to new tab ?
+await context.newPage()
+handle dynamic elements
+do you chain locators
+mouse actions
+await this.page.mouse.move(x, y);
+
+tables
+page.locator("/table).filter("tr").filter("tr[con]").filer("td")
+page.locator("/table).nth("1").
+pop up -> default playwright dismiss it
+page.waitForEvent('popup'),
+page.waitForEvent("download")//download event
+page.waitForNavigation({waitUntil: `networkidle`, timeout: configWebActions)
+
+popupListner=page.on
+('popup' , popup =>
+{
+popup.accept():
+});
+
+const popup=await popupListner():
+
+
+frame
+scrolltoelememnt  and keybaord actions
+const element = await this.page.framelocator(locator);
+await element.scrollIntoViewIfNeeded();
+page.keyboard.
+
+files
+await page.locator('input[type="file"]').setInputFiles('path/to/file.pdf');
+page.waitForEvent("download")
+ 1. Set up the listener before triggering the download
+  const downloadPromise = page.waitForEvent('download');
+
+  // 2. Perform the action that starts the download (e.g., clicking a link)
+  await page.getByRole('link', { name: 'Download Report' }).click();
+
+  // 3. Wait for the download process to complete
+  const download = await downloadPromise;
+
+  // 4. Save the file to a permanent path
+  const filePath = path.join(__dirname, download.suggestedFilename());
+  await download.saveAs(filePath);
+
+
+dropdown
+await page.selectOption('#country', { index: 2 });
+await page.selectOption('#country', { label: 'India' });]
+await page.selectOption('#country', 'in');
+await page.selectOption('#country', ['us', 'in']);
+
+const value = await page.locator('#country').inputValue(); //one value
+
+const options = await page.locator('select#my-dropdown option').allTextContents();
+console.log(options); // ['Option 1', 'Option 2', 'Option 3']
+
+
+
+await expect(page.locator('#my-dropdown option')).toHaveText([
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+]);
+
+Playwright: recommeded usage by priority order
+1️⃣ getByRole() -> page.getByRole('button', { name: 'Login' }) # most user interacted
+2️⃣ getByLabel() ->
+3️⃣ getByPlaceholder()
+4️⃣ getByText()
+5️⃣ getByTestId() ->page.getByTestId('login-btn') # use custom attribute for dynamically changing dom/maintain stability
+6️⃣ getByAltText()
+7️⃣ getByTitle()
+8️⃣ CSS locator
+9️⃣ XPath
+
+strict mode & auto-healing behavior
+
+for dynamic changing elements:
+use role if works
+test data id if present
+wait for network call to complete
+use chain locator
+use expect element or waitforselector
+
+framework
+page object model -> for seperating page code
+config with test data ->  segreated with qa/dev
+in built parallel testing
+tests only AAA model like act,action,assert
+utilities -> reporting/logging etc
+runners
+tracing/har files
+
+
+Github workflows
+
+API based
+PUT
+PATCH
+POST
+UPDATE
+DELETE
+READ
+HEAD - CHECK IF RESOURCE EXISTS WITHOUT GETTING METADATA
+options -
+
+postman
+get env at runtime  -> login user based on run time base url and test data user id and password-> get user token -> pass on to the
+functions for writing asserts
+pm.request.set/get
+pm.environment.set/get
+const res = pm.response.json();
+newman run collection.json -d users.json - run collection with data
+varibale scope - local/colletion/env/global
+newman run collection.json -e qa.env.json -> can use qa env data to execute suite
+newman run collection.json \ -e qa.env.json \  -r cli,htmlextra. -> env and report
+newman/
+ └── run-2026-01-16-14-10-20.html. -> report generated
+newman run collection.json --bail -> fail pipeline on test failure
+rerun and parallel testing
+response schema validation and data type
+
+
+
+Interview Preperation:
+Important : Be Confident and udnerstand the question and explain the answer in depth
+Coding/DSA
+framework explanation and debugging
+CICD
+team leading acttivities
+team
+metrix data
+manual concepts like
+test plan
+test case writing sample calculator
+
+
+
+
+planner, generator,healer
+playwright.config.ts
+
+export default defineconfig{
+timeout : 100000 -> override default test timeout to 1 minute;
+expect: {
+    timeout: 10_000, -> assert timeout to 1 minute
+  },
+
+use
+{
+baseUrl : "url.com" ;
+storageState : 'user.json';
+
+}
+}
+
+describe
+{
+before -> hooks
+after
+it() -> test -> timeout is 30 sec
+{
+test.skip(): -> test annotations
+test.fail();
+test.fixme();
+test.slow();
+test.setTimeout(100000) -> override default to one minute
+test.setTimeout(testInfo.deafaulttieout + 30000) -> increase timeout to plus 30 seconds
+
+expect(page.locator).tobevisible({timeput : 100000}); -> expect default timeput is 5seconds, over ride can be handled as options
+}
+}
+
+upload
+const uplaodPromise = page.waitForTheEvent("upload")
+await page.click("uploadbutton");
+await uploadPromise;
+await page.locator("upload").setInputFiles("file.txt","file2.txt");
+
+
+
+
+locators
+diff interactions like table ,  frame
+
+
+
