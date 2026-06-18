@@ -1,3 +1,5 @@
+package ApiAutomation.RestAssured;
+
 public class api {
 
     //response codes

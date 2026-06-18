@@ -2,7 +2,7 @@ Playwright vs selenium
 auto wait
 context object isolation and parallel execution in default
 no driver intrerface like selinium making it faster
-built in api testing,tracing
+built in ApiAutomation.RestAssured.api testing,tracing
 wait for the network calls
 intercept network calls
 
@@ -17,7 +17,7 @@ await request.post('https://github.com/login', {
 
   // Create a context that will issue http requests.
   const context = await request.newContext({
-    baseURL: 'https://api.github.com',
+    baseURL: 'https://ApiAutomation.RestAssured.api.github.com',
   });
 
   // Create a repository.
@@ -60,7 +60,7 @@ await this.page.waitForResponse((response) => {
 }, {timeout: 15000});
 
 intercepting
-await this.page.route('https://www.hotstar.com/api/internal/bff/v2/start', async (route) => {
+await this.page.route('https://www.hotstar.com/ApiAutomation.RestAssured.api/internal/bff/v2/start', async (route) => {
   const headers = route.request().headers();
   headers['x-hs-client-targeting'] = 'ad_id:dba87664-ae9e-4a98-ac8d-9372f7e24a4c;user_lat:false;hw_id:a954a95e5b41ac86;specific_tags:prod_vod_cta_test';
   await route.continue({headers});
